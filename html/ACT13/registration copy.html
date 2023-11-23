@@ -1,0 +1,133 @@
+<html>
+    <head>
+        <title>SCP Employee Registration Form</title>
+    </head>
+    <body>
+        <h1>ISCP Employee Registration Form</h1>
+        <img src="https://upload.wikimedia.org/wikipedia/en/c/c9/Seal_of_the_International_State_College_of_the_Philippines.png" alt="ISCP logo"><br/>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/aCUhfPAyDHY?si=cdRC7V1OCme246bk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>  
+        <h2>Basic Information</h2>
+        <label for="first_name">First name:</label>
+        <input type="text" placeholder="ex. Keith" id="first_name"/><br/>
+
+        <label for="last_name">Last name:</label>
+        <input type="text" placeholder="ex. Aquino" id="last_name"/><br/>
+
+        <label for="place_birth">Place of Birth:</label>
+        <input type="text" placeholder="ex. Cavite" id="place_birth"/><br/>
+
+        <label for="birthdate">Birthdate:</label>
+        <input type="date" id="birthdate"/><br/>
+
+        <label for="civil_status">Civil status:</label>
+            <select name="civil_status" id="civil_status">
+                <option disabled selected>Select one...</option>
+                <option value="single">Single</option>
+                <option value="married">Married</option>
+                <option value="separated">Separated</option>
+                <option value="widowed">Widowed</option></select><br/>
+
+        <label for="gender">Gender:</label>
+            <select name="gender" id="gender">
+                <option disabled selected>Select one...</option>
+                <option value="single">Male</option>
+                <option value="married">Female</option>           
+                <option value="widowed">Other</option></select><br/>
+
+        <label for="mother_maiden">Mother's maiden name:</label>
+        <input type="text" placeholder="ex. Vargas" id="mother_maiden"/><br/>
+
+        <label for="father_name">Father's name:</label>
+        <input type="text" placeholder="ex. Keith" id="father_name"/><br/>
+
+        <h2>Contact information</h2>
+        <label for="email_address">Email address:</label>
+        <input type="email" placeholder="ex. kvaquino@gmail.com" id="email_address"/><br/>
+
+        <label for="mobile_number">Contact number (mobile):</label>
+        <input type="text" placeholder="ex. 09XXXXXXXXX" id="mobile_number"/><br/>
+
+        <label for="tele_number">Contact number (telephone):</label>
+        <input type="text" placeholder="ex. 02XXXXX" id="tele_number"/><br/>
+
+        <h2>Address</h2>
+        <label for="street_number">Street number:</label>
+        <input type="text" placeholder="ex. Block 4 Lot 6" id="street_number"/><br/>
+
+        <label for="street_name">Street name:</label>
+        <input type="text" placeholder="ex. Sampaguita" id="street_name"/><br/>
+
+        <label for="barangay">Barangay:</label>
+        <input type="text" placeholder="ex. Purok 2" id="barangay"/><br/>
+
+        <label for="city">City/Town:</label>
+        <input type="text" placeholder="ex. Imus City" id="city"/><br/>
+
+        <label for="province">Province:</label>
+        <input type="text" placeholder="ex. Cavite" id="province"/><br/>
+
+        <label for="address">Full address:</label>
+        <input type="text" placeholder="ex. 2 Sampaguita Purok Imus" id="address"/><br/>
+
+        <h2>Government information</h2>
+        <label for="sss">SSS ID:</label>
+        <input type="text" placeholder="ex. XXXX-XXXXXXX-X" id="sss"/><br/>
+
+        <label for="pag_ibig">Pag-Ibig ID:</label>
+        <input type="text" placeholder="ex. XXXX-XXXX-XXXX" id="pag_ibig"/><br/>
+
+        <label for="philhealth">PhilHealth ID:</label>
+        <input type="text" placeholder="ex. XX-XXXXXXXXX-X" id="philhealth"/><br/>
+
+        <label for="pic2x2"> Upload 2x2 picture:</label>
+        <input type="file" id="pic2x2"/><br/>
+
+        <label for="pic_gov"> Upload picture of government ID:</label>
+        <input type="file" id="pic_gov"/><br/>
+
+        <h2>Account information</h2>
+        <label for="username">Username:</label>
+        <input type="text" placeholder="ex. Kevano" id="username"/><br/>
+
+        <label for="pw">Password:</label>
+        <input type="password" placeholder="6-8 characters" id="pw"/><br/>
+
+        <label for="confirm_pw">Confirm password:</label>
+        <input type="password" placeholder="re-enter password" id="confirm_pw"/><br/>
+
+        <label for="profile"> Upload profile image:</label>
+        <input type="file" id="profile"/><br/>
+
+        <form>
+            <h2>Have you experienced any of the following in the last 30 days?</h2>
+            <input type="checkbox" name="cough" value="coughing" id="cough"/>
+            <label for="cough">Coughing</label><br/>
+
+            <input type="checkbox" name="fever" value="fever" id="fever"/>
+            <label for="fever">Fever</label><br/>
+
+            <input type="checkbox" name="headache" value="headache" id="headache"/>
+            <label for="headache">Headache</label><br/>
+
+            <input type="checkbox" name="cold" value="common_cold" id="cold"/>
+            <label for="cold">Common cold</label><br/>
+
+            <input type="checkbox" name="bodyache" value="body_ache" id="bodyache"/>
+            <label for="bodyache">Body ache</label><br/>
+
+            <input type="checkbox" name="sorethroat" value="sore_throat" id="sorethroat"/>
+            <label for="sorethroat">Sore throat</label><br/>
+
+            <input type="checkbox" name="tire" value="tiredness" id="tire"/>
+            <label for="tire">Tiredness</label><br/>
+
+            <input type="checkbox" name="losssmell" value="loss_of_smell" id="losssmell"/>
+            <label for="losssmell">Loss of smell</label><br/>
+        </form>
+
+        <h2>Give a short description about yourself.</h2>
+        <textarea placeholder="Enter 3-5 sentences!" rows="5" cols="60"></textarea><br/>
+        <input type="submit" value="Submit"/>
+
+    </body>
+</html>

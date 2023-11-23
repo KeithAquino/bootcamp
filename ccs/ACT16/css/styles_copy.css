@@ -1,0 +1,130 @@
+/* table, td, th {
+    border-width: 4px; 
+    border-style: solid; 
+    border-color: black;
+    border-collapse: collapse;
+} */
+/* td {
+    width: 20%;
+} */
+th, td {
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    border-bottom: 1px solid black;
+    border-collapse: collapse;
+}
+tr:nth-child(even) {
+    background-color: white;
+}
+tr:nth-child(odd) {
+    background-color: gray;
+}
+tr:hover {
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    background-color: yellow;
+}
+tr.donation {
+    color: purple;
+}
+body {
+    font-family: Comic Sans MS; 
+    margin: 0px;
+    background-color: rgb(202, 123, 123);
+    background-image: url(../img/bg.jpg);
+    background-position-y: 50%;
+}
+#overlay {
+    margin-left: 50px;
+    margin-right: 50px;
+    background-color: rgba(0, 0, 0, 0.274);
+}
+#choir-section {
+    width: 150px;
+    height: 150px;
+    border: 4px solid red;
+    background-color: yellow;
+}
+#choir-section:hover {
+    width: 100px;
+    height: 100px;
+}
+#choir-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    clip-path: circle(50%);
+}
+#heading {
+    background-color: rgb(70, 130, 180);
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 10px 50px 10px 50px;
+}
+#top {
+    text-align: center; 
+    margin-top: 10px;
+}
+#min-verse {
+    text-align: center;
+    width: 50%;
+}
+#min {
+    color: rgb(70, 130, 180);
+}
+#min:hover {
+    color: yellow;
+}
+#huell {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+#thumbs {
+    width: 350px; 
+    margin-right: 20px;
+}
+#free {
+    font-size: 200%; 
+    color: rgb(70, 130, 180);
+}
+#please-click {
+    font-size: 130%;
+}
+#save {
+    font-size: 200%;
+    text-decoration-line: none;
+}
+#save:visited {
+    color: gold;
+}
+#save:link {
+    color: black;
+}
+#save:active {
+    color: red;
+}
+#crosses {
+    display: flex; 
+    align-items: flex-end;
+    justify-content: left;
+}
+#other {
+    text-align: center;
+    list-style-position: inside;
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-top: 20px;
+    list-style-image: url(../img/bolt.png);
+}
+#footer {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 75%;
+    color: rgb(160, 160, 160);
+}

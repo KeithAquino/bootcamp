@@ -1,0 +1,61 @@
+body {
+    font-family: Comic Sans MS; margin: 0px;
+}
+#heading {
+    background-color: rgb(70, 130, 180);
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 10px 50px 10px 50px;
+}
+#top {
+    text-align: center; 
+    margin-top: 10px;
+}
+#min-verse {
+    text-align: center;
+}
+#min {
+    color: rgb(70, 130, 180);
+}
+#huell {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+#thumbs {
+    width: 350px; 
+    margin-right: 20px;
+}
+#free {
+    font-size: 200%; color: rgb(70, 130, 180);
+}
+#please-click {
+    font-size: 130%;
+}
+#save {
+    font-size: 200%;
+}
+#save-color {
+    color: rgb(255, 0, 216)
+}
+#crosses {
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-end;
+}
+#other {
+    text-align: center;
+    list-style-position: inside;
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-top: 20px;
+}
+#footer {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 75%;
+    color: rgb(160, 160, 160);
+}

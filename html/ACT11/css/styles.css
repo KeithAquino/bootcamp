@@ -1,0 +1,36 @@
+body {
+    background-color: rgb(255, 255, 143); 
+    font-family: 'Helvetica', sans-serif; 
+    margin: 0px; 
+    padding: 0px;
+}
+#about-heading {
+    color: red;
+    font-size: 300%;
+}
+.resume-heading {
+    color: blue;
+}
+#college-school, #hs-school {
+    color: orange;
+}
+#hs-school {
+    font-size: 150%;
+}
+.school {
+    color: violet;
+}
+#display-school {
+    text-align: center;
+    color: magenta !important;
+}
+#display-school {
+    text-align: center;
+    color: red;
+}
+div > p {
+    font-family: 'Courier New', Courier, monospace;
+}
+#hobbies > li {
+    font-family: Impact, sans-serif;
+}

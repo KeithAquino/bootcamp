@@ -1,0 +1,143 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0px;
+    background-image: url(../img/bg.webp);
+    background-attachment: fixed;
+}
+  
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 50px 10px 50px;
+    overflow: hidden;
+    background-color: rgb(70, 130, 180);
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+li {
+    float: left;
+}
+li a {
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover {
+    background-color: rgba(0, 0, 139);
+}
+  
+#banner {
+    text-align: center;
+    margin-top: 10px;
+}
+  
+#ministries-section {
+    text-align: center;
+}
+  
+#ministries-text {
+    color: rgb(70, 130, 180);
+    font-size: 250%;
+}
+  
+#free-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+  
+#free-image {
+    width: 350px;
+    margin-right: 20px;
+}
+  
+#free-title {
+    font-size: 200%;
+    color: rgb(70, 130, 180);
+}
+  
+#free-action {
+    margin-bottom: 50px;
+}
+  
+#free-link {
+    color: blue;
+    font-size: 200%;
+}
+
+#free-link:hover {
+    color: magenta;
+}
+
+#free-link:active {
+    color: lime;
+}
+
+#free-link:visited {
+    color: orange;
+}
+  
+#other-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 20px;
+}
+  
+#other-center {
+    text-align: center;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+  
+#other-title {
+    margin: 0px;
+    font-weight: bold;
+}
+  
+#other-list {
+    list-style-position: inside;
+}
+  
+footer {
+    margin-top: 50px;
+    text-align: center;
+    color: rgb(160, 160, 160);
+}
+  
+.footer-link {
+    color: rgb(160, 160, 160);
+}
+  
+#footer-bottom {
+    font-size: 75%;
+}
+
+div.gallery {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+}
+  
+div.gallery:hover {
+    border: 1px solid #777;
+}
+  
+div.gallery img {
+    width: 100%;
+    height: auto;
+}
+  
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+#gallery {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 20px;
+}
