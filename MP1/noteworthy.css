@@ -1,0 +1,120 @@
+body {
+  font-family: "Rajdhani", sans-serif;
+  font-size: x-large;
+  color: white;
+  background-color: rgb(19, 18, 18);
+}
+
+#logo {
+  width: 300px;
+}
+
+#navbar {
+  width: 100%;
+  text-align: center;
+  padding: 10px 50px 10px 50px;
+  position: fixed;
+  top: 0px;
+  z-index: 1;
+  box-shadow: 0px 5px 10px grey;
+}
+
+.carousel .carousel-indicators button {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+}
+
+.card-img-special {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+#icons {
+  width: 10%;
+}
+
+.carousel-caption {
+  text-align: center;
+  padding-bottom: 30%;
+}
+
+.nwa {
+  color: yellow;
+  font-size: 200%;
+}
+
+#title {
+  font-size: larger;
+}
+
+#navbar {
+  box-shadow: 0px 5px 10px rgb(105, 104, 104);
+  background-color: rgba(161, 159, 159, 0.925);
+}
+
+.about-head {
+  color: rgb(128, 128, 128);
+}
+
+.resume-card {
+  font-size: 150%;
+  color: black;
+}
+
+#footer {
+  background-image: url(img/bg/school.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#noteworthy {
+  width: 20%;
+}
+
+.begin {
+  color: white;
+}
+
+.footer-link {
+  color: white;
+}
+
+.footer-link:hover {
+  color: white;
+}
+
+#path-bg {
+  background-image: url(img/bg/library.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+.zoom {
+  transition: all 0.3s;
+}
+
+.zoom:hover {
+  transform: scale(1.1);
+}
+
+@media only screen and (max-width: 1000px) {
+  #noteworthy {
+    width: 100%;
+  }
+
+  #music-hero {
+    padding-top: 35%;
+  }
+
+  .mp-xs {
+    padding-top: 10%;
+  }
+
+  .about-head {
+    margin-top: 10%;
+    text-align: center;
+  }
+}
