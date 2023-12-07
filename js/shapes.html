@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function solveTriangle(b, h) {
+        let area = (h * b) / 2;
+        return area;
+      }
+
+      function solveCircle(r) {
+        let area = Math.PI * r * r;
+        return area;
+      }
+
+      function solveRectangle(l, w) {
+        let area = l * w;
+        return area;
+      }
+
+      function run() {
+        let choice = Number(
+          prompt(
+            "What shape would you like to solve for? (0) Triangle, (1) Circle, (2) Rectangle"
+          )
+        );
+
+        switch (choice) {
+          case 0:
+            let base = Number(prompt("What is the base of the triangle?"));
+            let height = Number(prompt("What is the height of the triangle?"));
+            console.log(solveTriangle(base, height));
+            break;
+          case 1:
+            let radius = Number(prompt("What is the radius of the circle?"));
+            console.log(solveCircle(radius));
+            break;
+          case 2:
+            let length = Number(prompt("What is the length of the rectangle?"));
+            let width = Number(prompt("What is the width of the rectangle?"));
+            console.log(solveRectangle(length, width));
+            break;
+          default:
+            console.error("ERROR: Invalid input!");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Testing</h1>
+    <button onclick="run()">Run</button>
+  </body>
+</html>
