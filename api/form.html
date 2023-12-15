@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
+    <script>
+      $(document).ready(function () {
+        if (localStorage.getItem("form_full_name") != null) {
+          let form_full_name = localStorage.getItem("form_full_name");
+          $("#full_name").val(form_full_name);
+        }
+
+        if (localStorage.getItem("form_email_add") != null) {
+          let form_email_add = localStorage.getItem("form_email_add");
+          $("#email_add").val(form_email_add);
+        }
+
+        $("#full_name").blur(function () {
+          let full_name = $("#full_name").val();
+          localStorage.setItem("form_full_name", full_name);
+        });
+
+        $("#email_add").blur(function () {
+          let email_add = $("#email_add").val();
+          localStorage.setItem("form_email_add", email_add);
+        });
+
+        $("#clear_form").click(function () {
+          localStorage.clear();
+          $("#email_add").val("");
+          $("#full_name").val("");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Register</h1>
+    <form>
+      <label>Full name: </label>
+      <input type="text" id="full_name" class="form-control" />
+      <label>Email address:</label>
+      <input type="email" id="email_add" class="form-control" />
+      <input type="submit" class="btn btn-primary" />
+    </form>
+    <button id="clear_form" class="btn btn-warning">Clear Form</button>
+  </body>
+</html>

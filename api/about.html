@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function goBack() {
+        // window.history.back(2);
+        window.history.go(-2);
+      }
+
+      $(document).ready(function () {
+        if (sessionStorage.getItem("dark_mode") == null) {
+          console.log("Dark mode not saved in sessionStorage!");
+        }
+        let dark_mode = sessionStorage.getItem("dark_mode");
+        setDarkMode();
+
+        $("#dark_mode").click(function () {
+          if (dark_mode == 1) {
+            dark_mode = 0;
+          } else {
+            dark_mode = 1;
+          }
+          sessionStorage.setItem("dark_mode", dark_mode);
+          setDarkMode();
+        });
+
+        function setDarkMode() {
+          if (dark_mode == 1) {
+            $("body").css({
+              "background-color": "rgb(16, 16, 16)",
+              color: "white",
+            });
+          } else {
+            $("body").css({
+              "background-color": "white",
+              color: "rgb(16, 16, 16)",
+            });
+          }
+        }
+      });
+    </script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Browser history</h1>
+    <button onclick="goBack()" class="btn btn-primary">Go back</button>
+    <h1>Profile settings</h1>
+    <button id="dark_mode" class="btn btn-dark">Dark Mode</button>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint eaque rem
+      enim beatae consequatur, blanditiis quis aspernatur placeat ratione dolore
+      velit perspiciatis esse nemo soluta.
+    </p>
+  </body>
+</html>

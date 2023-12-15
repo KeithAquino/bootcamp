@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/pet.js"></script>
+    <title>Simple Pet Game</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1>CANDY, the SHEEP!</h1>
+      <div class="row d-flex justify-content-start align-items-center">
+        <div class="col-lg-3">
+          <img src="img/sheep.jpg" id="pet" class="img-fluid" />
+        </div>
+        <div class="col-lg-6" id="game_bars">
+          <p>Hunger</p>
+          <div class="progress">
+            <div
+              class="progress-bar bg-warning"
+              id="hunger_bar"
+              style="width: 100%"
+              role="progressbar"
+            ></div>
+          </div>
+          <p>Exercise</p>
+          <div class="progress">
+            <div
+              class="progress-bar bg-primary"
+              id="exercise_bar"
+              style="width: 100%"
+              role="progressbar"
+            ></div>
+          </div>
+          <p>Sleep</p>
+          <div class="progress">
+            <div
+              class="progress-bar bg-success"
+              id="sleep_bar"
+              style="width: 100%"
+              role="progressbar"
+            ></div>
+          </div>
+          <div class="col-lg-5 my-2 mx-1 d-flex justify-content-start">
+            <img src="img/eat.png" width="40px" id="do_eat" />
+            <img src="img/exercise.png" width="40px" id="do_exercise" />
+            <img src="img/sleep.png" width="40px" id="do_sleep" />
+          </div>
+          <div class="row">
+            <span><b>Last Activity: </b><span id="last_activity"></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

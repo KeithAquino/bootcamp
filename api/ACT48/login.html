@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Login</title>
+    <script>
+      $(document).ready(function () {
+        let username = "user";
+        let password = "pw123";
+        let localUsername = localStorage.getItem("username");
+        let localPassword = localStorage.getItem("password");
+
+        if (localUsername && localPassword) {
+          if (localUsername == username && localPassword == password) {
+            window.location.href = "home.html";
+          }
+        }
+
+        $("form").submit(function (x) {
+          let submitUsername = $("#username").val();
+          let submitPassword = $("#password").val();
+          let rememberMe = $("#rememberMe").prop("checked");
+
+          if (submitUsername == username && submitPassword == password) {
+            window.location.href = "home.html";
+          } else {
+            alert("Invalid username or password");
+          }
+
+          if (rememberMe) {
+            localStorage.setItem("username", submitUsername);
+            localStorage.setItem("password", submitPassword);
+          }
+
+          x.preventDefault();
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <form id="login">
+      <label>Username:</label>
+      <input type="text" id="username" /><br />
+      <label>Password:</label>
+      <input type="password" id="password" /><br />
+      <input type="checkbox" id="rememberMe" />
+      <label>Remember me</label><br />
+      <button type="submit" class="submit">Submit</button>
+    </form>
+  </body>
+</html>

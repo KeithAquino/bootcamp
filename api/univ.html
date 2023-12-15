@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
+    <script>
+      $(document).ready(function () {
+        let student_count;
+        if (localStorage.getItem("student_count") != null) {
+          student_count = Number(localStorage.getItem("student_count"));
+          $("#student_count").text(student_count);
+        } else {
+          student_count = Number($("#student_count").text());
+        }
+        $("#student_add").click(function () {
+          student_count++;
+          $("#student_count").text(student_count);
+          localStorage.setItem("student_count", student_count);
+        });
+
+        $("#student_clear").click(function () {
+          localStorage.clear("student_count");
+          location.reload();
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>University Enrollment</h1>
+    <p id="student_count">0</p>
+    <button id="student_add" class="btn btn-primary">Add Student</button>
+    <button id="student_clear" class="btn btn-danger">
+      Reset Student Count
+    </button>
+  </body>
+</html>

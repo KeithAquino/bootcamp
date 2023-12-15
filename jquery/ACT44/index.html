@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Oso University</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <style>
+      .card-img {
+        height: 100%;
+        object-fit: cover !important;
+      }
+
+      .subject-selected {
+        background-color: rgb(99, 237, 99);
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/univ.js"></script>
+  </head>
+  <body class="dark-mode bg-white">
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg dark-mode navbar-light bg-gray">
+      <div class="container">
+        <a class="navbar-brand" href="#!">OSO University</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="#">Academics</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!">Admissions</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!">Life at OSO</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!">Research</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!">Athletics</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-dark text-light nav-link" id="darkMode" href="#"
+                >Dark Mode</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Page header with logo and tagline-->
+    <header class="py-5 bg-light border-bottom mb-4">
+      <div class="container">
+        <div class="text-center my-5">
+          <h1 class="fw-bolder">
+            We have <span id="student-count">4325</span> students enrolled!
+          </h1>
+          <p class="lead mb-0">Enroll with us now!</p>
+          <button class="btn btn-primary mt-2" id="studentButton">
+            Enroll a Student
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- Page content-->
+    <div class="container">
+      <div class="row">
+        <!-- Blog entries-->
+        <h1>Enroll now!</h1>
+        <p>Select classes you want to enroll in.</p>
+        <div class="col-lg-8 mb-3">
+          <div class="card mb-3 subject-item">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img
+                  src="assets/sub-multimedia.webp"
+                  class="rounded-start card-img"
+                  alt="multimedia"
+                />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Multimedia Design</h5>
+                  <p class="card-text">
+                    Discover the exciting world of multimedia design, where your
+                    creativity knows no bounds as you master the fusion of text,
+                    graphics, audio, and video to craft captivating digital
+                    experiences that leave a lasting impact.
+                  </p>
+                  <p class="card-text">
+                    <small class="text-muted">Enrolled: 21/50</small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-3 subject-item">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img
+                  src="assets/sub-chemistry.jpg"
+                  class="rounded-start card-img"
+                  alt="chemistry"
+                />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Chemistry</h5>
+                  <p class="card-text">
+                    Embark on a captivating journey into the hidden world of
+                    molecules, reactions, and the fundamental forces that shape
+                    our universe with chemistry, where you'll uncover the
+                    secrets of matter and the endless possibilities it offers.
+                  </p>
+                  <p class="card-text">
+                    <small class="text-muted">Enrolled: 22/50</small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-3 subject-item">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img
+                  src="assets/sub-english.webp"
+                  class="rounded-start card-img"
+                  alt="english"
+                />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">English</h5>
+                  <p class="card-text">
+                    Explore the limitless power of words and unlock your
+                    potential for creativity, expression, and understanding the
+                    world through the rich and diverse realm of English
+                    literature and language.
+                  </p>
+                  <p class="card-text">
+                    <small class="text-muted">Enrolled: 19/50</small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-3 subject-item">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img
+                  src="assets/sub-geometry.webp"
+                  class="rounded-start card-img"
+                  alt="geometry"
+                />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Analytical Geometry</h5>
+                  <p class="card-text">
+                    Embark on a thrilling mathematical adventure where you'll
+                    decode the language of shapes and equations, revealing
+                    hidden patterns in the world around you through the
+                    fascinating world of analytical geometry.
+                  </p>
+                  <p class="card-text">
+                    <small class="text-muted">Enrolled: 20/50</small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary">Proceed with Enrollment</button>
+        </div>
+        <!-- Side widgets-->
+        <div class="col-lg-4">
+          <!-- Search widget-->
+          <div class="card mb-4 dark-mode bg-white text-dark">
+            <div class="card-header">Search</div>
+            <div class="card-body">
+              <div class="input-group">
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Enter search term..."
+                />
+                <button
+                  class="btn btn-primary"
+                  id="button-search"
+                  type="button"
+                >
+                  Go!
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-4 dark-mode bg-white text-dark">
+            <div class="card-header">Browse</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-6">
+                  <ul class="list-unstyled mb-0">
+                    <li><a href="#!">Academics</a></li>
+                    <li><a href="#!">Admissions</a></li>
+                    <li><a href="#!">Life at OSO</a></li>
+                  </ul>
+                </div>
+                <div class="col-sm-6">
+                  <ul class="list-unstyled mb-0">
+                    <li><a href="#!">Research</a></li>
+                    <li><a href="#!">Athletics</a></li>
+                    <li><a href="#!">About</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Side widget-->
+          <div class="card mb-4 dark-mode bg-white text-dark">
+            <div class="card-header">The University</div>
+            <div class="card-body">
+              OSO University — located in Taguig City, Zambales, with a campus
+              in Idaho, Australia, is one of the nation's most prestigious
+              non-Sectarian Catholic universities. Founded in 1933 to 1945, OSO
+              University is recognized for world-class academics, life-changing
+              research, microwave with tax return, and a strong commitment to
+              faith and service.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">
+          Copyright &copy; Daiben Sanchez
+        </p>
+      </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+  </body>
+</html>

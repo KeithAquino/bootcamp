@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="immig.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Immigration Form</h1>
+    <div class="container">
+      <div class="col-lg-6">
+        <form id="immig-form">
+          <label> First name: </label>
+          <input type="text" id="first_name" class="form-control" />
+          <label> Last name: </label>
+          <input type="text" id="last_name" class="form-control" />
+
+          <label>State:</label>
+          <select id="state" class="form-select">
+            <option disable selected>Select one</option>
+            <option value="Florida">Florida</option>
+            <option value="Texas">Texas</option>
+            <option value="New York">New York</option>
+          </select>
+
+          <label>Gender:</label>
+          <input
+            type="radio"
+            name="gender"
+            value="Male"
+            class="form-check-input gender"
+          />Male
+          <input
+            type="radio"
+            name="gender"
+            value="Female"
+            class="form-check-input gender"
+          />Female
+          <input
+            type="radio"
+            name="gender"
+            value="Other"
+            class="form-check-input gender"
+          />Other
+          <input
+            type="radio"
+            name="gender"
+            value="Rather not say"
+            class="form-check-input gender"
+          />Rather nor say<br />
+
+          <input type="checkbox" id="sub_newsletter" class="form-check-input" />
+          <label class="form-check-label" for="sub_newsletter"
+            >I want to subscribe to Immigration Center's newsletter for event,
+            updates, etc.</label
+          >
+          <input
+            type="submit"
+            class="btn btn-primary mt-2"
+            data-bs-toggle="modal"
+            data-bs-target="#immig_success"
+          />
+        </form>
+        <!-- modal -->
+        <div class="modal fade" id="immig_success" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Verify Input Info</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body">
+                <ul>
+                  <li>First name: <span id="first_name_m"></span></li>
+                  <li>Last name: <span id="last_name_m"></span></li>
+                  <li>State: <span id="state_m"></span></li>
+                  <li>
+                    Subscribed to newsletter?
+                    <span id="sub_newsletter_m"></span>
+                  </li>
+                  <li>Gender: <span id="gender_m"></span></li>
+                </ul>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">
+                  Undo
+                </button>
+                <button class="btn btn-primary">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
