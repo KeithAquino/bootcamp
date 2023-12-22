@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "type":"module",
+    "upper-case": "^3.0.0"
+  }
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#submit").click(function (x) {
+          let actorId = $("#actorId").val();
+          const settings = {
+            async: true,
+            crossDomain: true,
+            url:
+              "https://imdb8.p.rapidapi.com/actors/get-awards?nconst=" +
+              actorId,
+            method: "GET",
+            headers: {
+              "X-RapidAPI-Key":
+                "d94bc3f1b1msh5ffd04cf49a980cp127a9bjsnb75c45d4e19c",
+              "X-RapidAPI-Host": "imdb8.p.rapidapi.com",
+            },
+          };
+
+          $.ajax(settings).done(function (response) {
+            for (let i = 0; i < response.resource.awards.length; i++) {
+              let curr_list = $("#awards_list").html();
+              let award =
+                "<li>" +
+                response.resource.awards[i].awardName +
+                " " +
+                response.resource.awards[i].eventName +
+                " " +
+                response.resource.awards[i].year +
+                "</li>";
+              $("#awards_list").html(curr_list + award);
+            }
+          });
+
+          x.preventDefault();
+        });
+      });
+    </script>
+    <title>Actor/Actress Awards</title>
+  </head>
+  <body>
+    <h1>Lookup Awards</h1>
+    <form>
+      <label>Enter IMDB ID</label>
+      <input type="text" id="actorId" />
+      <button id="submit">Submit</button>
+    </form>
+    <ul id="awards_list"></ul>
+  </body>
+</html>

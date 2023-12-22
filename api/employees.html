@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      getData(
+        "https://raw.githubusercontent.com/daibenangelo/dump/main/employees.json"
+      );
+
+      async function getData(data) {
+        let my_obj = await fetch(data);
+        let my_text = await my_obj.text();
+        let output = JSON.parse(my_text);
+
+        $("#company_name").text(output.companyName);
+        for (let i = 0; i < output.employees.length; i++) {
+          let old_el = $("#employee_list").html();
+          let row =
+            "<tr><td>" +
+            output.employees[i].firstName +
+            "</td><td>" +
+            output.employees[i].lastName +
+            "</td><td>" +
+            output.employees[i].email +
+            "</td></tr>";
+          $("#employee_list").html(old_el + row);
+        }
+        // console.log(my_text);
+      }
+    </script>
+    <title>Employees</title>
+  </head>
+  <body>
+    <h1>Employees of <span id="company_name"></span></h1>
+    <table class="table">
+      <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email address</th>
+      </tr>
+      <tbody id="employee_list"></tbody>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      async function putData(data, book) {
+        let req = await fetch(data, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(book),
+        });
+        let res = await req.json();
+        console.log(res);
+        window.location.href = "library.html";
+      }
+
+      $(document).ready(function () {
+        $("#add_book").submit(function (x) {
+          let book_data = {
+            title: $("#title").val(),
+            description: $("#desc").val(),
+            genre: $("#genre").val(),
+          };
+
+          putData("http://localhost:3000/api/books", book_data);
+          x.preventDefault();
+        });
+      });
+    </script>
+    <title>Add Book</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#site_navbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="site_navbar">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" href="library.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="genre-fantasy.html">Fantasy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="genre-religious.html">Religious</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <h1>Add New Book</h1>
+      <form id="add_book">
+        <label>Title: </label>
+        <input type="text" id="title" class="form-control" />
+        <label>Description: </label>
+        <input type="text" id="desc" class="form-control" />
+        <label>Genre: </label>
+        <input type="text" id="genre" class="form-control" />
+        <input type="submit" class="btn btn-primary" />
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      async function getData(data) {
+        let my_obj = await fetch(data);
+        let my_text = await my_obj.text();
+        let books = JSON.parse(my_text);
+
+        for (let i = 0; i < books.length; i++) {
+          let row =
+            "<tr><td>" +
+            books[i].title +
+            "</td><td><button class='btn btn-success' data-bs-toggle='modal' data-bs-target='#book_" +
+            books[i].id +
+            "'>View</button></td></tr>";
+          let modal =
+            '<div class="modal fade" id="book_' +
+            books[i].id +
+            '" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">' +
+            books[i].title +
+            '</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body">' +
+            books[i].description +
+            "<br />Genre: " +
+            books[i].genre +
+            "</div></div></div></div>";
+          $("#book_list").append(row);
+          $("#book_list").append(modal);
+        }
+      }
+
+      getData("http://localhost:3000/api/books/");
+    </script>
+    <title>Book Viewer</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#site_navbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="site_navbar">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" href="library.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="genre-fantasy.html">Fantasy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="genre-religious.html">Religious</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <h1>Book Viewer</h1>
+      <div class="row">
+        <table class="table">
+          <tr>
+            <th>Title</th>
+            <th>Action</th>
+          </tr>
+          <tbody id="book_list"></tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
