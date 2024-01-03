@@ -7,6 +7,8 @@ import Footer from "./Components/Footer";
 import About from "./Components/About";
 import Grades from "./Components/Grades";
 import Shop from "./Components/Shop";
+import Counter from "./Components/Counter";
+import Triangle from "./Components/Triangle";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -52,6 +54,28 @@ function App() {
           <>
             <Navbar />
             <Shop />
+            <Footer />
+          </>
+        }
+      />
+
+      <Route
+        path="/counter"
+        element={
+          <>
+            <Navbar />
+            <Counter />
+            <Footer />
+          </>
+        }
+      />
+
+      <Route
+        path="/triangle"
+        element={
+          <>
+            <Navbar />
+            <Triangle />
             <Footer />
           </>
         }
