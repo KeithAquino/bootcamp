@@ -5,6 +5,8 @@ import "jquery/dist/jquery.js";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import About from "./Components/About";
+import Grades from "./Components/Grades";
+import Shop from "./Components/Shop";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -23,13 +25,33 @@ function App() {
           </>
         }
       />
-
       <Route
         path="/about"
         element={
           <>
             <Navbar />
             <About />
+            <Footer />
+          </>
+        }
+      />
+      <Route
+        path="/grades"
+        element={
+          <>
+            <Navbar />
+            <Grades score={60} total={100} />
+            <Footer />
+          </>
+        }
+      />
+
+      <Route
+        path="/shop"
+        element={
+          <>
+            <Navbar />
+            <Shop />
             <Footer />
           </>
         }
