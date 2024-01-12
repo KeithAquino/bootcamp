@@ -11,7 +11,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        // $total_student = DB::select("SELECT COUNT(*) as total FROM students");
+        // $total_student = DB::select("SELECT COUNT(*) AS total FROM students");
         // $students = DB::select("SELECT first_name, last_name, year_level, province FROM students ORDER BY last_name LIMIT 20");
 
         $students = Student::query()

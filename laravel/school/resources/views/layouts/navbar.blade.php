@@ -22,7 +22,7 @@
                 href="#"
                 data-bs-toggle="dropdown"
             >
-    Branches
+                Branches
             </a>
             <ul class="dropdown-menu">
                 <li>
@@ -47,7 +47,7 @@
             <a class="nav-link disabled" href="careers.html" tabindex="-1"
                 >Careers</a
             >
-    </li>
+            </li>
         </ul>
         <form class="d-flex">
             <input

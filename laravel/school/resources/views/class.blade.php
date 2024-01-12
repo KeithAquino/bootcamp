@@ -6,7 +6,20 @@
 </head>
 <body>
     @include('layouts/navbar')
-    <h1>Classes</h1>
+    <h1>Classes per department</h1>
+    <table class="table">
+        <tr>
+            <th>Department</th>
+            <th>Number of classes</th>
+        </tr>
+    @foreach ($classes_dept as $cd)
+        <tr>
+            <td>{{$cd -> department}}</td>
+            <td>{{$cd -> total_classes}}</td>
+        </tr>
+    @endforeach
+    </table>
+    <h1>All Classes</h1>
     <table class="table">
         <tr>
             <th>Class ID</th>
@@ -22,6 +35,5 @@
             <td>{{$c -> name}}</td>
         </tr>
     @endforeach
-    </table>  
 </body>
 </html>
