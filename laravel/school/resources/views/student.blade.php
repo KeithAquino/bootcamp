@@ -8,13 +8,14 @@
 <body>
     @include('layouts/navbar')
     <h1>Students</h1>
-    <p>Total students: {{$total_student -> total}}</p>
+    <p>Total students: {{$total_student -> total}} <a href="/students/create" class="btn btn-success"> + Add </a></p>
     <table class="table">
         <tr>
             <th>First name</th>
             <th>Last name</th>
             <th>Year level</th>
             <th>Province</th>
+            <th>More Info</th>
         </tr>
         @foreach ($students as $s)
         <tr>
@@ -22,6 +23,7 @@
             <td>{{$s -> last_name}}</td>
             <td>{{$s -> year_level}}</td>
             <td>{{$s -> province}}</td>
+            <td><a href="/students/{{$s -> student_id}}" class="btn btn-primary">View</a></td>
         </tr>
         @endforeach
     </table>

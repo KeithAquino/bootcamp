@@ -5,6 +5,7 @@
     <title>Faculties</title>
 </head>
 <body>
+    @include('layouts/navbar')
     <img src="https://external-preview.redd.it/p9_LBMMn22djOrg9XGS2wIcQh2zRyBELz6zhmSUZUSg.jpg?auto=webp&s=6ae3d505c2f1ff1b15122036003fee77b283615e" class="img-fluid" width="400px" alt="ISCP logo"/>
     <h1>Faculties List</h1>
     <table class="table">
