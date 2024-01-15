@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">CAE School</a>
+        <a class="navbar-brand" href="#">ADMIN</a>
         <button
         class="navbar-toggler"
         data-bs-toggle="collapse"
@@ -14,16 +14,16 @@
             <a class="nav-link active" href="/home">Home</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="/students">Students</a>
+            <a class="nav-link" href="/admin/students">Students</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="/subjects">Subjects</a>
+            <a class="nav-link" href="/admin/subjects">Subjects</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="/classes">Classes</a>
+            <a class="nav-link" href="/admin/classes">Classes</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="/faculties">Faculties</a>
+            <a class="nav-link" href="/admin/faculties">Faculties</a>
             </li>
         </div>
     </div>

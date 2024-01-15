@@ -9,16 +9,14 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    public function delete_student(string $id)
-    {
-        $tudent = Student::where('student_id', '=', $id)
+    public function delete_student(string $id){
+        $student = Student::where('student_id', '=', $id)
             ->delete();
-
-        return redirect('/students');
+        
+        return redirect('/admin/students');
     }
 
-    public function edit_student(Request $r, string $id)
-    {
+    public function edit_student(Request $r, string $id){
         $student = Student::where('student_id', '=', $id)
             ->update(
                 [
@@ -32,10 +30,10 @@ class StudentController extends Controller
                     'province' => $r->input('province'),
                 ]
             );
-
-        return redirect('students/' . $id);
+        
+        // return redirect('/admin/students/' . $id);
+        return redirect('/admin/students');
     }
-
 
     public function edit_student_form(string $id)
     {
@@ -44,7 +42,7 @@ class StudentController extends Controller
             ->where('student_id', '=', $id)
             ->get()
             ->first();
-
+        
         return view('student_edit', compact('student'));
     }
 
@@ -62,7 +60,7 @@ class StudentController extends Controller
         $student->province = $r->input('province');
         $student->save();
 
-        return redirect("students");
+        return redirect("/admin/students");
     }
 
     public function add_student_form()
@@ -83,9 +81,6 @@ class StudentController extends Controller
 
     public function index()
     {
-        // $total_student = DB::select("SELECT COUNT(*) AS total FROM students");
-        // $students = DB::select("SELECT first_name, last_name, year_level, province FROM students ORDER BY last_name LIMIT 20");
-
         $students = Student::query()
             ->select('student_id', 'first_name', 'last_name', 'year_level', 'province')
             ->orderBy('student_id', 'DESC')

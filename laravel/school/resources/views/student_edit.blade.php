@@ -7,7 +7,7 @@
 <body>
     @include('layouts/navbar')
     <h1>Edit Student</h1>
-    <form action="/students/{{$student -> student_id}}" method="POST">
+    <form action="/admin/students/{{$student -> student_id}}" method="POST">
         @csrf
         @method('PUT')
         <label>First name:</label>
@@ -19,7 +19,7 @@
         <label>Year level:</label>
         <input type="number" name="year_level" value="{{$student -> year_level}}"/><br/>
         <label>Gender:</label>
-        <select name="gender" value="{{$student -> gender}}">
+        <select name="gender">
             <option value="{{$student -> gender}}">{{$student -> gender}}</option>
             <option disabled>-----------</option>
             <option value="Male">Male</option>
