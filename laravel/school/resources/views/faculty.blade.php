@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     @include('layouts/head')
     <title>Faculties</title>
 </head>
+
 <body>
     @include('layouts/navbar')
+    @include('layouts/messages')
     <h1>Faculties List</h1>
     <p>Total faculties: {{$total_faculty -> total}} <a href="/faculties/create" class="btn btn-success"> + Add </a> </p>
     <table class="table">
@@ -42,9 +45,9 @@
                             <form action="/faculties/{{$f -> faculty_id}}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <input class="btn btn-danger" type="submit" value="Delete"/>
+                                <input class="btn btn-danger" type="submit" value="Delete" />
                             </form>
-                        </div>                    
+                        </div>
                     </div>
                 </div>
             </div>
@@ -81,4 +84,5 @@
         @endforeach
     </table>
 </body>
+
 </html>

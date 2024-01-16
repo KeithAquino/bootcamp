@@ -8,8 +8,10 @@
 
 <body>
     @include('layouts/navbar')
+    @include('layouts/messages')
     <h1>Register</h1>
-    <form>
+    <form action="/register" method="POST">
+        @csrf
         <label>First name:</label>
         <input type="text" name="first_name"><br>
         <label>Last name:</label>

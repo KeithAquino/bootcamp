@@ -14,6 +14,20 @@ use DB;
 
 class UserController extends Controller
 {
+    public function register(Request $r)
+    {
+        $user = new User;
+        $user->first_name = $r->input('first_name');
+        $user->last_name = $r->input('last_name');
+        $user->email = $r->input('email');
+        $user->password = Hash::make($r->input('pw'));
+        $user->role = $r->input('role');
+        $user->student_id = $r->input('student_id');
+        $user->save();
+
+        return redirect("/register")->with('success', 'New user added!');
+    }
+
     public function show_register()
     {
         return view('register');
@@ -61,11 +75,15 @@ class UserController extends Controller
                 Session::put('role', $user->role);
                 Session::put('student_id', $user->student_id);
                 if (Session::get('role') == 'admin') {
-                    return redirect('/admin/students');
+                    return redirect('/admin/students')->with('success', 'Logged in as admin!');
                 } else if (Session::get('role') == 'user') {
-                    return redirect('/profile');
+                    return redirect('/profile')->with('success', 'Welcome, ' . Session::get('first_name') . '!');
                 }
+            } else {
+                return redirect('/login')->with('fail', 'Incorrect password.');
             }
+        } else {
+            return redirect('/login')->with('fail', 'An account with that email does not exist.');
         }
     }
 

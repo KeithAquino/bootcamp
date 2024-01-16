@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use DB;
 use App\Models\Faculty;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class FacultyController extends Controller
 {
-    public function delete_faculty(string $id){
+    public function delete_faculty(string $id)
+    {
         $faculty = Faculty::where('faculty_id', '=', $id)
             ->delete();
-        
+
         return redirect('/faculties');
     }
 
-    public function edit_faculty(Request $r, string $id){
+    public function edit_faculty(Request $r, string $id)
+    {
         $faculty = Faculty::where('faculty_id', '=', $id)
             ->update(
                 [
@@ -30,7 +32,7 @@ class FacultyController extends Controller
                     'department' => $r->input('department'),
                 ]
             );
-        
+
         return redirect('faculties/' . $id);
     }
 
@@ -41,7 +43,7 @@ class FacultyController extends Controller
             ->where('faculty_id', '=', $id)
             ->get()
             ->first();
-        
+
         return view('faculty_edit', compact('faculty'));
     }
 
@@ -78,7 +80,8 @@ class FacultyController extends Controller
         return view('faculty_show', compact('faculty'));
     }
 
-    public function index() {
+    public function index()
+    {
         $faculties = Faculty::query()
             ->select('faculty_id', 'first_name', 'last_name', 'department')
             ->orderBy('last_name')
@@ -89,12 +92,12 @@ class FacultyController extends Controller
             ->select(DB::raw('COUNT(*) AS total'))
             ->get()
             ->first();
-        
+
         $faculties_dept = Faculty::query()
             ->select('department', DB::raw('COUNT(*) AS total_faculty'))
             ->groupBy('department')
             ->get();
-        
+
         $faculties_points = Faculty::query()
             ->select('first_name', 'last_name', 'academe_points')
             ->join('faculties_educ', 'faculties.faculty_id', '=', 'faculties_educ.faculty_id')
@@ -102,7 +105,7 @@ class FacultyController extends Controller
             ->orderBy('last_name')
             ->limit(5)
             ->get();
-        
+
         return view('faculty', compact('faculties', 'faculties_dept', 'faculties_points', 'total_faculty'));
     }
 }

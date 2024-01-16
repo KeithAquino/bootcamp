@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use DB;
-
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
-    public function delete_student(string $id){
+    public function delete_student(string $id)
+    {
         $student = Student::where('student_id', '=', $id)
             ->delete();
-        
-        return redirect('/admin/students');
+
+        return redirect('/admin/students')->with('success', 'Successfully deleted');
     }
 
-    public function edit_student(Request $r, string $id){
+    public function edit_student(Request $r, string $id)
+    {
         $student = Student::where('student_id', '=', $id)
             ->update(
                 [
@@ -30,9 +31,9 @@ class StudentController extends Controller
                     'province' => $r->input('province'),
                 ]
             );
-        
+
         // return redirect('/admin/students/' . $id);
-        return redirect('/admin/students');
+        return redirect('/admin/students')->with('success', 'Successfully edited');
     }
 
     public function edit_student_form(string $id)
@@ -42,7 +43,7 @@ class StudentController extends Controller
             ->where('student_id', '=', $id)
             ->get()
             ->first();
-        
+
         return view('student_edit', compact('student'));
     }
 
@@ -60,7 +61,7 @@ class StudentController extends Controller
         $student->province = $r->input('province');
         $student->save();
 
-        return redirect("/admin/students");
+        return redirect("/admin/students")->with('success', 'Successfully added');
     }
 
     public function add_student_form()
@@ -75,7 +76,7 @@ class StudentController extends Controller
             ->where('student_id', '=', $id)
             ->get()
             ->first();
-        
+
         return view('student_show', compact('student'));
     }
 

@@ -8,6 +8,7 @@
 
 <body>
     @include('layouts/navbar')
+    @include('layouts/messages')
     <h1>Your Profile</h1>
     <p>Student ID: {{$student -> student_id}}</p>
     <h2>Personal information</h2>

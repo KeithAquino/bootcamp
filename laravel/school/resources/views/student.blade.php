@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     @include('layouts/head')
-    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/styles.css" />
     <title>Students</title>
 </head>
+
 <body>
     @include('layouts/navbar')
+    @include('layouts/messages')
     <h1>Students</h1>
     <p>Total students: {{$total_student -> total}} <a href="/admin/students/create" class="btn btn-success"> + Add </a> </p>
     <table class="table">
@@ -45,9 +48,9 @@
                             <form action="/admin/students/{{$s -> student_id}}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <input class="btn btn-danger" type="submit" value="Delete"/>
+                                <input class="btn btn-danger" type="submit" value="Delete" />
                             </form>
-                        </div>                    
+                        </div>
                     </div>
                 </div>
             </div>
@@ -72,4 +75,5 @@
         @endforeach
     </table>
 </body>
+
 </html>

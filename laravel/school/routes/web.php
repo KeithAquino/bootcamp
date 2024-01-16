@@ -17,6 +17,7 @@ Route::get('/about', function () {
 });
 
 Route::get('/register', [UserController::class, 'show_register']);
+Route::post('/register', [UserController::class, 'register']);
 
 Route::get('/login', [UserController::class, 'show_login']);
 Route::post('/login', [UserController::class, 'login']);
