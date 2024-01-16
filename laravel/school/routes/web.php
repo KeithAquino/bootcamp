@@ -8,7 +8,7 @@ use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\UserController;
 
 //PUBLIC SIDE
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('home');
 });
 
@@ -16,7 +16,15 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/login', [UserController::class, 'login']);
+Route::get('/register', [UserController::class, 'show_register']);
+
+Route::get('/login', [UserController::class, 'show_login']);
+Route::post('/login', [UserController::class, 'login']);
+
+Route::get('/logout', [UserController::class, 'logout']);
+
+//USER SIDE
+Route::get('/profile', [UserController::class, 'show_profile']);
 
 //ADMIN SIDE
 Route::get('/admin/students', [StudentController::class, 'index']);
