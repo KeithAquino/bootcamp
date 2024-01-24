@@ -6,6 +6,7 @@ use App\Http\Controllers\ClassController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 
 //PUBLIC SIDE
 Route::get('/', function () {
@@ -46,3 +47,5 @@ Route::delete('/admin/faculties/{id}', [FacultyController::class, 'delete_facult
 
 Route::get('/admin/classes', [ClassController::class, 'index']);
 Route::get('/admin/subjects', [SubjectController::class, 'index']);
+
+Route::resource('admin/products', ProductController::class);
