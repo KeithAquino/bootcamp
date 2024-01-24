@@ -16,6 +16,7 @@
             <th>Name</th>
             <th>Price</th>
             <th>Stock</th>
+            <th>Image</th>
         </tr>
         @foreach ($products as $p)
         <tr>
@@ -23,6 +24,7 @@
             <td>{{$p -> name}}</td>
             <td>{{$p -> price}}</td>
             <td>{{$p -> stock}}</td>
+            <td><img src="/img/products/{{$p -> image}}" alt="{{$p -> name}}" style="height:30px"></td>
         </tr>
         @endforeach
     </table>
