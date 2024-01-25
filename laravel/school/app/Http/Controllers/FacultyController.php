@@ -3,18 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faculty;
+use App\Models\FacultiesEduc;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class FacultyController extends Controller
 {
+    public function add_education(Request $r)
+    {
+        $faculty = new FacultiesEduc;
+        $faculty->has_unders = $r->input('has_unders');
+        $faculty->unders_enrolled = $r->input('unders_enrolled');
+        $faculty->unders_year_received = $r->input('unders_year_received');
+        $faculty->has_masters = $r->input('has_masters');
+        $faculty->masters_enrolled = $r->input('masters_enrolled');
+        $faculty->masters_year_received = $r->input('masters_year_received');
+        $faculty->has_doctors = $r->input('has_doctors');
+        $faculty->doctors_enrolled = $r->input('doctors_enrolled');
+        $faculty->doctors_year_received = $r->input('doctors_year_received');
+        $faculty->academe_points = 0;
+        $faculty->save();
+
+        return redirect('admin/faculties/');
+    }
+
+    public function add_education_form()
+    {
+        return view('faculty_add_educ');
+    }
+
     public function delete_faculty(string $id)
     {
         $faculty = Faculty::where('faculty_id', '=', $id)
             ->delete();
 
-        return redirect('/faculties');
+        return redirect('admin/faculties');
     }
 
     public function edit_faculty(Request $r, string $id)
@@ -33,7 +57,7 @@ class FacultyController extends Controller
                 ]
             );
 
-        return redirect('faculties/' . $id);
+        return redirect('admin/faculties/' . $id);
     }
 
     public function edit_faculty_form(string $id)
@@ -61,7 +85,7 @@ class FacultyController extends Controller
         $faculty->department = $r->input('department');
         $faculty->save();
 
-        return redirect("faculties");
+        return redirect("admin/faculties");
     }
 
     public function add_faculty_form()

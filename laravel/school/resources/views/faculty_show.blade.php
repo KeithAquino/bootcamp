@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     @include('layouts/head')
     <title>Show Faculty</title>
 </head>
+
 <body>
     @include('layouts/navbar')
     <h1>Faculty ID: {{$faculty -> faculty_id}}</h1>
@@ -23,5 +25,13 @@
     <ul>
         <li>Mobile number: {{$faculty -> mobile_number}}</li>
         <li>Email address: {{$faculty -> email_address}}</li>
+    </ul>
+    <h2>Education Background</h2>
+    <ul>
+        <li>Undergrad: {{$faculty -> has_unders}} ({{$faculty -> unders_enrolled}}, {{$faculty -> unders_year_received}})</li>
+        <li>Masters: {{$faculty -> has_masters}} ({{$faculty -> masters_enrolled}}, {{$faculty -> masters_year_received}})</li>
+        <li>Doctors: {{$faculty -> has_doctors}} ({{$faculty -> doctors_enrolled}}, {{$faculty -> doctors_year_received}})</li>
+    </ul>
 </body>
+
 </html>

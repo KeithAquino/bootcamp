@@ -43,10 +43,12 @@ Route::middleware('checkSessionAdmin')->delete('/admin/students/{id}', [StudentC
 
 Route::middleware('checkSessionAdmin')->get('/admin/faculties', [FacultyController::class, 'index']);
 Route::middleware('checkSessionAdmin')->get('/admin/faculties/create', [FacultyController::class, 'add_faculty_form']);
+Route::middleware('checkSessionAdmin')->get('/admin/faculties/education', [FacultyController::class, 'add_education_form']);
 Route::middleware('checkSessionAdmin')->get('/admin/faculties/edit/{id}', [FacultyController::class, 'edit_faculty_form']);
 Route::middleware('checkSessionAdmin')->get('/admin/faculties/{id}', [FacultyController::class, 'show_faculty']);
 Route::middleware('checkSessionAdmin')->post('/admin/faculties', [FacultyController::class, 'add_faculty']);
 Route::middleware('checkSessionAdmin')->put('/admin/faculties/{id}', [FacultyController::class, 'edit_faculty']);
+Route::middleware('checkSessionAdmin')->put('/admin/faculties/{id}', [FacultyController::class, 'add_education']);
 Route::middleware('checkSessionAdmin')->delete('/admin/faculties/{id}', [FacultyController::class, 'delete_faculty']);
 
 Route::middleware('checkSessionAdmin')->get('/admin/classes', [ClassController::class, 'index']);
