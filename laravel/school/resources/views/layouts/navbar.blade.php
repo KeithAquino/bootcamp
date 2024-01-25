@@ -1,5 +1,5 @@
 @if (Session::get('role') == 'admin')
-@include('layouts/navbar_admin')
+    @include('layouts/navbar_admin')
 @else
-@include('layouts/navbar_user')
+    @include('layouts/navbar_user')
 @endif

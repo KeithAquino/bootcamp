@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $order_id
  * @property Carbon $time_placed
  * @property string $status
- * @property int $user_id
+ * @property int $student_id
  *
  * @package App\Models
  */
@@ -27,12 +27,12 @@ class Order extends Model
 
 	protected $casts = [
 		'time_placed' => 'datetime',
-		'user_id' => 'int'
+		'student_id' => 'int'
 	];
 
 	protected $fillable = [
 		'time_placed',
 		'status',
-		'user_id'
+		'student_id'
 	];
 }

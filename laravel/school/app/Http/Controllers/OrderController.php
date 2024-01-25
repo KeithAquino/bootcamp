@@ -7,9 +7,56 @@ use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrdersProduct;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
+    public function show_all_orders()
+    {
+        $orders = Order::query()
+            ->select('order_id', 'time_placed', 'status', 'orders.user_id', 'first_name', 'last_name')
+            ->join('users', 'orders.user_id', '=', 'users.user_id')
+            ->orderBy('time_placed', 'DESC')
+            ->get();
+
+        return view('order_admin', compact('orders'));
+    }
+
+    public function view_order(string $id)
+    {
+        $orders = Order::query()
+            ->select('*')
+            ->join('orders_products', 'orders.order_id', '=', 'orders_products.order_id')
+            ->join('products', 'orders_products.product_id', '=', 'products.product_id')
+            ->where('orders.order_id', '=', $id)
+            ->get();
+
+        if (Session::get('user_id') == $orders[0]->user_id) {
+            $grand_total = Order::query()
+                ->select(DB::raw('SUM(price * quantity) AS grand_total'))
+                ->join('orders_products', 'orders.order_id', '=', 'orders_products.order_id')
+                ->join('products', 'orders_products.product_id', '=', 'products.product_id')
+                ->where('orders.order_id', '=', $id)
+                ->get()
+                ->first();
+
+            return view('order_show', compact('orders', 'grand_total'));
+        } else {
+            return redirect('/orders')->with('fail', "Unauthorized access! Incorrect user logged in.");
+        }
+    }
+
+    public function view_orders()
+    {
+        $orders = Order::query()
+            ->select('*')
+            ->where('user_id', '=', Session::get('user_id'))
+            ->orderBy('time_placed', 'DESC')
+            ->get();
+
+        return view('order', compact('orders'));
+    }
+
     public function place_order(Request $r)
     {
         $order = new Order;
@@ -43,6 +90,7 @@ class OrderController extends Controller
 
         return view('cafeteria_success', compact('order', 'order_products', 'receipt'));
     }
+
     public function index()
     {
         $menu = Product::query()

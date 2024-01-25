@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Models\Student;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -13,7 +14,8 @@ class StudentController extends Controller
         $student = Student::where('student_id', '=', $id)
             ->delete();
 
-        return redirect('/admin/students')->with('success', 'Successfully deleted');
+        return redirect('/admin/students')
+            ->with('success', 'Successfully deleted.');
     }
 
     public function edit_student(Request $r, string $id)
@@ -32,8 +34,9 @@ class StudentController extends Controller
                 ]
             );
 
-        // return redirect('/admin/students/' . $id);
-        return redirect('/admin/students')->with('success', 'Successfully edited');
+        // return redirect('students/' . $id);
+        return redirect('/admin/students')
+            ->with('success', 'Successfully edited.');
     }
 
     public function edit_student_form(string $id)
@@ -61,7 +64,8 @@ class StudentController extends Controller
         $student->province = $r->input('province');
         $student->save();
 
-        return redirect("/admin/students")->with('success', 'Successfully added');
+        return redirect("/admin/students")
+            ->with('success', 'Successfully added');
     }
 
     public function add_student_form()
@@ -82,6 +86,9 @@ class StudentController extends Controller
 
     public function index()
     {
+        // $total_student = DB::select("SELECT COUNT(*) AS total FROM students");
+        // $students = DB::select("SELECT first_name, last_name, year_level, province FROM students ORDER BY last_name LIMIT 20");
+
         $students = Student::query()
             ->select('student_id', 'first_name', 'last_name', 'year_level', 'province')
             ->orderBy('student_id', 'DESC')

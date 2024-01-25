@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Kyslik\ColumnSortable\Sortable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 

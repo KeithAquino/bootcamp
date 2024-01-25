@@ -27,6 +27,7 @@
         </tr>
         @endforeach
     </table>
+    <a href="/orders" class="btn btn-success">Go to Orders</a>
 </body>
 
 </html>

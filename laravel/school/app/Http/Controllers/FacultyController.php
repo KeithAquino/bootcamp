@@ -5,40 +5,46 @@ namespace App\Http\Controllers;
 use App\Models\Faculty;
 use App\Models\FacultiesEduc;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FacultyController extends Controller
 {
-    public function add_education(Request $r)
+    public function add_faculty_educ(Request $r, string $id)
     {
-        $faculty = new FacultiesEduc;
-        $faculty->has_unders = $r->input('has_unders');
-        $faculty->unders_enrolled = $r->input('unders_enrolled');
-        $faculty->unders_year_received = $r->input('unders_year_received');
-        $faculty->has_masters = $r->input('has_masters');
-        $faculty->masters_enrolled = $r->input('masters_enrolled');
-        $faculty->masters_year_received = $r->input('masters_year_received');
-        $faculty->has_doctors = $r->input('has_doctors');
-        $faculty->doctors_enrolled = $r->input('doctors_enrolled');
-        $faculty->doctors_year_received = $r->input('doctors_year_received');
-        $faculty->academe_points = 0;
-        $faculty->save();
+        $fe = new FacultiesEduc;
+        $fe->faculty_id = $id;
+        $fe->has_unders = $r->input("has_unders");
+        $fe->unders_enrolled = $r->input("unders_enrolled");
+        $fe->unders_year_received = $r->input("unders_year_received");
+        $fe->has_masters = $r->input("has_masters");
+        $fe->masters_enrolled = $r->input("masters_enrolled");
+        $fe->masters_year_received = $r->input("masters_year_received");
+        $fe->has_doctors = $r->input("has_doctors");
+        $fe->doctors_enrolled = $r->input("doctors_enrolled");
+        $fe->doctors_year_received = $r->input("doctors_year_received");
+        $fe->academe_points = 0;
+        $fe->save();
 
-        return redirect('admin/faculties/');
+        return redirect('/admin/faculties/' . $id);
     }
 
-    public function add_education_form()
+    public function add_faculty_educ_form(string $id)
     {
-        return view('faculty_add_educ');
+        $faculty = Faculty::query()
+            ->select('*')
+            ->where('faculty_id', '=', $id)
+            ->get()
+            ->first();
+
+        return view('faculty_educ', compact('faculty'));
     }
 
     public function delete_faculty(string $id)
     {
-        $faculty = Faculty::where('faculty_id', '=', $id)
-            ->delete();
+        $faculty = Faculty::where('faculty_id', '=', $id)->delete();
 
-        return redirect('admin/faculties');
+        return redirect('faculties');
     }
 
     public function edit_faculty(Request $r, string $id)
@@ -57,9 +63,8 @@ class FacultyController extends Controller
                 ]
             );
 
-        return redirect('admin/faculties/' . $id);
+        return redirect('faculties');
     }
-
     public function edit_faculty_form(string $id)
     {
         $faculty = Faculty::query()
@@ -69,6 +74,18 @@ class FacultyController extends Controller
             ->first();
 
         return view('faculty_edit', compact('faculty'));
+    }
+
+    public function show_faculty(string $id)
+    {
+        $faculty = Faculty::query()
+            ->select('*')
+            ->join('faculties_educ', 'faculties.faculty_id', '=', 'faculties_educ.faculty_id')
+            ->where('faculties.faculty_id', '=', $id)
+            ->get()
+            ->first();
+
+        return view('faculty_show', compact('faculty'));
     }
 
     public function add_faculty(Request $r)
@@ -93,29 +110,13 @@ class FacultyController extends Controller
         return view('faculty_create');
     }
 
-    public function show_faculty(string $id)
-    {
-        $faculty = Faculty::query()
-            ->select('*')
-            ->where('faculty_id', '=', $id)
-            ->get()
-            ->first();
-
-        return view('faculty_show', compact('faculty'));
-    }
-
     public function index()
     {
         $faculties = Faculty::query()
             ->select('faculty_id', 'first_name', 'last_name', 'department')
-            ->orderBy('last_name')
+            ->orderBy('faculty_id', 'DESC')
             ->limit(25)
             ->get();
-
-        $total_faculty = Faculty::query()
-            ->select(DB::raw('COUNT(*) AS total'))
-            ->get()
-            ->first();
 
         $faculties_dept = Faculty::query()
             ->select('department', DB::raw('COUNT(*) AS total_faculty'))
@@ -130,6 +131,6 @@ class FacultyController extends Controller
             ->limit(5)
             ->get();
 
-        return view('faculty', compact('faculties', 'faculties_dept', 'faculties_points', 'total_faculty'));
+        return view('faculty', compact('faculties', 'faculties_dept', 'faculties_points'));
     }
 }

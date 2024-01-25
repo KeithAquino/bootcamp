@@ -8,16 +8,15 @@
 
 <body>
     @include('layouts/navbar')
-    @include('layouts/messages')
     <h1>Faculties List</h1>
-    <p>Total faculties: {{$total_faculty -> total}} <a href="/admin/faculties/create" class="btn btn-success"> + Add </a> </p>
+    <a href="faculties/create" class="btn btn-success">+ Add</a>
     <table class="table">
         <tr>
             <th>Name</th>
             <th>Depatment</th>
             <th>Faculty ID</th>
-            <th>More Info</th>
-            <th>Add Education</th>
+            <th>Add Educ</th>
+            <th>View Entry</th>
             <th>Edit Entry</th>
             <th>Delete Entry</th>
         </tr>
@@ -26,33 +25,16 @@
             <td>{{$f -> last_name}}, {{$f -> first_name}}</td>
             <td>{{$f -> department}}</td>
             <td>{{$f -> faculty_id}}</td>
+            <td><a href="/admin/faculties/educ/{{$f -> faculty_id}}" class="btn btn-dark">Add</a>
             <td><a href="/admin/faculties/{{$f -> faculty_id}}" class="btn btn-primary">View</a></td>
-            <td><a href="/admin/faculties/education" class="btn btn-light">Add</a></td>
             <td><a href="/admin/faculties/edit/{{$f -> faculty_id}}" class="btn btn-warning">Edit</a></td>
             <td>
-                <a data-bs-toggle="modal" data-bs-target="#delete_{{$f -> faculty_id}}" class="btn btn-danger">Delete</a>
+                <form action="/admin/faculties/{{$f -> faculty_id}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <input type="submit" class="btn btn-danger" value="Delete" />
+                </form>
             </td>
-
-            <div class="modal fade" id="delete_{{$f -> faculty_id}}" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Delete {{$f -> last_name}}, {{$f -> first_name}}? ({{$f -> faculty_id}})</h5>
-                            <button class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">Once this action is taken, it cannot be undone.
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <form action="/admin/faculties/{{$f -> faculty_id}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <input class="btn btn-danger" type="submit" value="Delete" />
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </tr>
         @endforeach
     </table>

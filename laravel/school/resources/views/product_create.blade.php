@@ -18,7 +18,7 @@
         <label>Stock:</label>
         <input type="number" name="stock" /><br />
         <label>Upload photo:</label>
-        <input type="file" name="image"><br>
+        <input type="file" name="image" /><br />
         <input type="submit" class="btn btn-success">
     </form>
 </body>

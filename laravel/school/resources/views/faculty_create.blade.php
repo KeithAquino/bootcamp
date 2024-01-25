@@ -27,18 +27,23 @@
         <input type="text" name="mobile_number" /><br />
         <label>Email address:</label>
         <input type="email" name="email_address" /><br />
-        <label>Position</label>
-        <input type="text" name="position" /><br />
+        <label>Position:</label>
+        <select name="position">
+            <option value="Lecturer 1">Lecturer 1</option>
+            <option value="Lecturer 2">Lecturer 2</option>
+            <option value="Professor 1">Professor 1</option>
+            <option value="Professor 2">Professor 2</option>
+        </select><br />
         <label>Department:</label>
         <select name="department">
             <option value="Computer">Computer</option>
-            <option value="English">English</option>
+            <option value="Science">Science</option>
+            <option value="Social Science">Social Science</option>
             <option value="Filipino">Filipino</option>
             <option value="History">History</option>
             <option value="MAPEH">MAPEH</option>
             <option value="Mathematics">Mathematics</option>
-            <option value="Science">Science</option>
-            <option value="Social Science">Social Science</option>
+            <option value="English">English</option>
         </select><br />
         <input type="submit" class="btn btn-success">
     </form>

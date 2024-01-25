@@ -42,18 +42,19 @@
                             <button class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">Once this action is taken, it cannot be undone.
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <form action="/admin/students/{{$s -> student_id}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <input class="btn btn-danger" type="submit" value="Delete" />
-                            </form>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Cancel
+                                </button>
+                                <form action="/admin/students/{{$s -> student_id}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input class="btn btn-danger" type="submit" value="Delete" />
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </tr>
         @endforeach
     </table>

@@ -9,7 +9,7 @@
 <body>
     @include('layouts/navbar')
     <h1>Product Page</h1>
-    <a href="/admin/products/create" class="btn btn-success">Add product</a>
+    <a href="/admin/products/create" class="btn btn-success">Add Product</a>
     <table class="table">
         <tr>
             <th>Product ID</th>
@@ -24,7 +24,7 @@
             <td>{{$p -> name}}</td>
             <td>{{$p -> price}}</td>
             <td>{{$p -> stock}}</td>
-            <td><img src="/img/products/{{$p -> image}}" alt="{{$p -> name}}" style="height:30px"></td>
+            <td><img src="/img/products/{{$p -> image}}" alt="{{$p -> name}}" style="height:30px" /> </td>
         </tr>
         @endforeach
     </table>

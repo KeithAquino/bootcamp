@@ -34,11 +34,8 @@ class FacultiesEduc extends Model
 
 	protected $casts = [
 		'has_unders' => 'bool',
-		'unders_year_received' => 'datetime',
 		'has_masters' => 'bool',
-		'masters_year_received' => 'datetime',
 		'has_doctors' => 'bool',
-		'doctors_year_received' => 'datetime',
 		'academe_points' => 'int'
 	];
 
