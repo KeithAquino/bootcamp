@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\Faculty;
 use App\Models\FacultiesEduc;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class FacultyController extends Controller
 {

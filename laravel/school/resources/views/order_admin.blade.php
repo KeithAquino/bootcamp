@@ -17,6 +17,7 @@
             <th>Status</th>
             <th>User ID</th>
             <th>Name</th>
+            <th>View Order</th>
         </tr>
         @foreach ($orders as $o)
         <tr>

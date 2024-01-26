@@ -31,9 +31,14 @@ Route::get('/cafeteria', [OrderController::class, 'index']);
 
 //USER SIDE
 Route::middleware('checkSessionUser')->get('/profile', [UserController::class, 'show_profile']);
+Route::middleware('checkSessionUser')->get('/profile/upload', [UserController::class, 'upload_profile_picture_form']);
+Route::middleware('checkSessionUser')->post('/profile/upload', [UserController::class, 'upload_profile_picture']);
+
 Route::middleware('checkSessionUser')->post('/cafeteria', [OrderController::class, 'place_order']);
 Route::middleware('checkSessionUser')->get('/orders', [OrderController::class, 'view_orders']);
 Route::middleware('checkSessionUser')->get('/orders/{id}', [OrderController::class, 'view_order']);
+Route::middleware('checkSessionUser')->put('/orders/receive/{id}', [OrderController::class, 'receive_order']);
+Route::middleware('checkSessionUser')->put('/orders/cancel/{id}', [OrderController::class, 'cancel_order']);
 
 //ADMIN SIDE
 Route::middleware('checkSessionAdmin')->get('/admin/students', [StudentController::class, 'index']);
@@ -57,8 +62,9 @@ Route::middleware('checkSessionAdmin')->delete('/admin/faculties/{id}', [Faculty
 Route::middleware('checkSessionAdmin')->get('/admin/faculties/educ/{id}', [FacultyController::class, 'add_faculty_educ_form']);
 Route::middleware('checkSessionAdmin')->post('/admin/faculties/educ/{id}', [FacultyController::class, 'add_faculty_educ']);
 
-
 Route::middleware('checkSessionAdmin')->resource('/admin/products', ProductController::class);
 
 Route::middleware('checkSessionAdmin')->get('/admin/orders', [OrderController::class, 'show_all_orders']);
-Route::middleware('checkSessionAdmin')->get('/admin/orders/{{id}}', [OrderController::class, 'show_order']);
+Route::middleware('checkSessionAdmin')->get('/admin/orders/{id}', [OrderController::class, 'show_order']);
+Route::middleware('checkSessionAdmin')->put('/admin/orders/accept/{id}', [OrderController::class, 'accept_order']);
+Route::middleware('checkSessionAdmin')->put('/admin/orders/status/{id}', [OrderController::class, 'update_order_status']);

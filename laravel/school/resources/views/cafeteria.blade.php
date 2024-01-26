@@ -28,6 +28,7 @@
 <body>
     @include('layouts/navbar')
     <h1>Cafeteria</h1>
+    @if (count($ongoing_orders) == 0)
     <div class="container">
         <form action="/cafeteria" method="POST">
             <div class="row">
@@ -49,6 +50,9 @@
             <input type="submit" class="btn btn-success mt-3" value="Place Order" />
         </form>
     </div>
+    @else
+    <a href="/orders">You have ongoing orders!</a>
+    @endif
 </body>
 
 </html>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\Student;
+use App\Models\StudentsPhoto;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -14,6 +15,26 @@ use DB;
 
 class UserController extends Controller
 {
+    public function upload_profile_picture(Request $r)
+    {
+        $sp = new StudentsPhoto;
+        $sp->student_id = Session::get('student_id');
+        if ($r->file('profile_picture')) {
+            $file = $r->file('profile_picture');
+            $filename = date('YmdHiu') . $file->getClientOriginalName();
+            $file->move(public_path('img/user_profiles'), $filename);
+            $sp->image = $filename;
+        }
+        $sp->save();
+
+        return redirect('/profile')->with('success', 'Profile picture updated!');
+    }
+
+    public function upload_profile_picture_form()
+    {
+        return view('profile_upload_picture');
+    }
+
     public function register(Request $r)
     {
         $user = new User;
@@ -49,7 +70,14 @@ class UserController extends Controller
             ->where('students.student_id', '=', Session::get('student_id'))
             ->get();
 
-        return view('profile', compact('student', 'classes'));
+        $profile_picture = Student::query()
+            ->select('image')
+            ->join('students_photos', 'students.student_id', '=', 'students_photos.student_id')
+            ->where('students.student_id', '=', Session::get('student_id'))
+            ->get()
+            ->last();
+
+        return view('profile', compact('student', 'classes', 'profile_picture'));
     }
 
     public function logout()

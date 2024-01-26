@@ -6,11 +6,106 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrdersProduct;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
 {
+    public function cancel_order(string $id)
+    {
+        $orders = Order::query()
+            ->select('*')
+            ->join('orders_products', 'orders.order_id', '=', 'orders_products.order_id')
+            ->join('products', 'orders_products.product_id', '=', 'products.product_id')
+            ->where('orders.order_id', '=', $id)
+            ->get();
+
+        if ($orders[0]->user_id == Session::get('user_id')) {
+            $order = Order::where('order_id', '=', $id)
+                ->update(
+                    [
+                        'status' => 'cancelled'
+                    ]
+                );
+
+            return redirect('/orders/' . $id)->with('success', 'Order cancelled!');
+        }
+    }
+
+    public function receive_order(string $id)
+    {
+        $orders = Order::query()
+            ->select('*')
+            ->join('orders_products', 'orders.order_id', '=', 'orders_products.order_id')
+            ->join('products', 'orders_products.product_id', '=', 'products.product_id')
+            ->where('orders.order_id', '=', $id)
+            ->get();
+
+        if ($orders[0]->user_id == Session::get('user_id')) {
+            $order = Order::where('order_id', '=', $id)
+                ->update(
+                    [
+                        'status' => 'finished'
+                    ]
+                );
+
+            return redirect('/orders/' . $id)->with('success', 'Order finished. Please enjoy!');
+        }
+    }
+
+    public function update_order_status(Request $r, string $id)
+    {
+        $order = Order::where('order_id', '=', $id)
+            ->update(
+                [
+                    'status' => $r->input("status")
+                ]
+            );
+
+        return redirect('/admin/orders/' . $id)->with('success', 'Updated order status to ' . $r->input("status"));
+    }
+
+    public function accept_order(string $id)
+    {
+        $order = Order::where('order_id', '=', $id)
+            ->update(
+                [
+                    'status' => 'accepted',
+                ]
+            );
+
+        return redirect('/admin/orders/' . $id)->with('success', 'Updated order status to accepted.');
+    }
+
+    public function show_order(string $id)
+    {
+        $orders = Order::query()
+            ->select('*')
+            ->join('orders_products', 'orders.order_id', '=', 'orders_products.order_id')
+            ->join('products', 'orders_products.product_id', '=', 'products.product_id')
+            ->where('orders.order_id', '=', $id)
+            ->get();
+
+        $grand_total = Order::query()
+            ->select(DB::raw('SUM(price * quantity) AS grand_total'))
+            ->join('orders_products', 'orders.order_id', '=', 'orders_products.order_id')
+            ->join('products', 'orders_products.product_id', '=', 'products.product_id')
+            ->where('orders.order_id', '=', $id)
+            ->get()
+            ->first();
+
+        $user_info = Order::query()
+            ->select('users.last_name', 'users.first_name', 'image', 'province', 'mobile_number', 'status')
+            ->join('users', 'orders.user_id', '=', 'users.user_id')
+            ->join('students', 'students.student_id', '=', 'users.student_id')
+            ->join('students_photos', 'students.student_id', '=', 'students_photos.student_id')
+            ->where('orders.order_id', '=', $id)
+            ->get()
+            ->last();
+
+        return view('order_admin_show', compact('orders', 'grand_total', 'user_info'));
+    }
+
     public function show_all_orders()
     {
         $orders = Order::query()
@@ -97,6 +192,17 @@ class OrderController extends Controller
             ->select('*')
             ->where('stock', '>', '0')
             ->get();
-        return view('cafeteria', compact('menu'));
+
+        $ongoing_orders = [];
+        if (Session::get('user_id')) {
+            $ongoing_orders = Order::query()
+                ->select('*')
+                ->where('status', '!=', 'cancelled')
+                ->where('status', '!=', 'finished')
+                ->where('user_id', '=', Session::get('user_id'))
+                ->get();
+        }
+
+        return view('cafeteria', compact('menu', 'ongoing_orders'));
     }
 }

@@ -28,7 +28,7 @@
         @endforeach
     </table>
     @else
-    <p>No Orders yet! <a href="/cafeteria">Go to the cafeteria.</a></p>
+    <p>No orders yet! <a href="/cafeteria">Go to the cafeteria.</a></p>
     @endif
 </body>
 

@@ -11,6 +11,12 @@
     @include('layouts/messages')
     <h1>Your Profile</h1>
     <p>Student ID: {{$student -> student_id}}</p>
+    @if ($profile_picture)
+    <img src="img/user_profiles/{{$profile_picture -> image}}" alt="blank profile picture" width="100px" /><br />
+    @else
+    <img src="https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/no-profile-picture-icon.png" alt="blank profile picture" width="100px" /><br />
+    @endif
+    <a href="/profile/upload" class="btn btn-success mt-2">Upload profile picture</a>
     <h2>Personal information</h2>
     <ul>
         <li>Full name: {{$student -> last_name}}, {{$student -> first_name}}</li>
