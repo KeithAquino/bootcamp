@@ -84,17 +84,35 @@ class StudentController extends Controller
         return view('student_show', compact('student'));
     }
 
-    public function index()
+    public function index(Request $r)
     {
-        // $total_student = DB::select("SELECT COUNT(*) AS total FROM students");
-        // $students = DB::select("SELECT first_name, last_name, year_level, province FROM students ORDER BY last_name LIMIT 20");
-
         $students = Student::query()
             ->select('student_id', 'first_name', 'last_name', 'year_level', 'province')
             ->orderBy('student_id', 'DESC')
-            ->orderBy('first_name')
+            ->orderBy('first_name');
+
+        if ($r->filled("search")) {
+            $students->where(function ($query) use ($r) {
+                $query->where('first_name', 'LIKE', '%' . $r->input('search') . '%')
+                    ->orWhere('last_name', 'LIKE', '%' . $r->input('search') . '%')
+                    ->orWhere('province', 'LIKE', '%' . $r->input('search') . '%');
+            });
+        }
+
+        if ($r->filled('year_level')) {
+            $students->where('year_level', '=', $r->input('year_level'));
+        }
+        if ($r->filled('gender')) {
+            $students->where('gender', '=', $r->input('gender'));
+        }
+
+        $students = $students
             ->limit(20)
             ->get();
+
+        // $total_student = DB::select("SELECT COUNT(*) AS total FROM students");
+        // $students = DB::select("SELECT first_name, last_name, year_level, province FROM students ORDER BY last_name LIMIT 20");
+
         $total_student = Student::query()
             ->select(DB::raw('COUNT(*) AS total'))
             ->get()

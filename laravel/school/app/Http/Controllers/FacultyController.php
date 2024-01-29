@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use DB;
 use App\Models\Faculty;
 use App\Models\FacultiesEduc;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 

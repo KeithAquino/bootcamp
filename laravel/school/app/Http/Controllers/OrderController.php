@@ -135,7 +135,34 @@ class OrderController extends Controller
                 ->get()
                 ->first();
 
-            return view('order_show', compact('orders', 'grand_total'));
+            $status = $orders[0]->status;
+            $progress_percent = 0;
+
+            switch ($status) {
+                case "waiting":
+                    $progress_percent = 10;
+                    break;
+                case "accepted":
+                    $progress_percent = 25;
+                    break;
+                case "preparing":
+                    $progress_percent = 50;
+                    break;
+                case "delivering":
+                    $progress_percent = 70;
+                    break;
+                case "delivered":
+                    $progress_percent = 90;
+                    break;
+                case "finished":
+                    $progress_percent = 100;
+                    break;
+                case "cancelled":
+                    $progress_percent = 0;
+                    break;
+            }
+
+            return view('order_show', compact('orders', 'grand_total', 'progress_percent'));
         } else {
             return redirect('/orders')->with('fail', "Unauthorized access! Incorrect user logged in.");
         }

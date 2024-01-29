@@ -31,6 +31,9 @@
     <h2>Grand total: ₱{{$grand_total -> grand_total}}</h2>
     <h2>Order Status</h2>
     <p>Status: {{$o -> status}}</p>
+    <div class="progress">
+        <div class="progress-bar bg-success" style="width: {{$progress_percent}}%"></div>
+    </div>
     @if ($o -> status == "waiting" or $o -> status == "accepted")
     <form action="/orders/cancel/{{$o -> order_id}}" method="POST">
         @csrf

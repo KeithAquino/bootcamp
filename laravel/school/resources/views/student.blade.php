@@ -10,6 +10,35 @@
 <body>
     @include('layouts/navbar')
     @include('layouts/messages')
+    <div class="container-fluid">
+        <form action="/admin/students" method="GET">
+            <div class="row">
+                <div class="col-lg-3 border border-dark">
+                    <strong>Search</strong>
+                    <input type="text" name="search" value=""/>
+                </div>
+                <div class="col-lg-3 border border-dark">
+                    <strong>Filter</strong>
+                    <select name="year_level">
+                        <option value="" selected>Any year level</option>
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="4">4th Year</option>
+                    </select>
+                    <select name="gender">
+                        <option value="" selected>Any gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="col-lg-3 border border-dark" >
+                    <input type="submit" class="btn btn-success" />
+                </div>
+            </div>
+        </form>
+    </div>
     <h1>Students</h1>
     <p>Total students: {{$total_student -> total}} <a href="/admin/students/create" class="btn btn-success"> + Add </a> </p>
     <table class="table">
