@@ -32,6 +32,10 @@ class Student extends Model
 	protected $primaryKey = 'student_id';
 	public $timestamps = false;
 
+	use Sortable;
+
+	public $sortable = ['last_name', 'year_level'];
+
 	protected $casts = [
 		'birthdate' => 'datetime',
 		'year_level' => 'int',

@@ -6,9 +6,13 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Kyslik\ColumnSortable\Sortable;
 
 class StudentController extends Controller
 {
+    use Sortable;
+
+
     public function delete_student(string $id)
     {
         $student = Student::where('student_id', '=', $id)
@@ -87,9 +91,9 @@ class StudentController extends Controller
     public function index(Request $r)
     {
         $students = Student::query()
-            ->select('student_id', 'first_name', 'last_name', 'year_level', 'province')
-            ->orderBy('student_id', 'DESC')
-            ->orderBy('first_name');
+            ->select('student_id', 'first_name', 'last_name', 'year_level', 'province');
+        // ->orderBy('student_id', 'DESC')
+        // ->orderBy('first_name');
 
         if ($r->filled("search")) {
             $students->where(function ($query) use ($r) {
@@ -107,8 +111,8 @@ class StudentController extends Controller
         }
 
         $students = $students
-            ->limit(20)
-            ->get();
+            ->sortable()->paginate(20);
+        $students->appends($r->except('page'));
 
         // $total_student = DB::select("SELECT COUNT(*) AS total FROM students");
         // $students = DB::select("SELECT first_name, last_name, year_level, province FROM students ORDER BY last_name LIMIT 20");

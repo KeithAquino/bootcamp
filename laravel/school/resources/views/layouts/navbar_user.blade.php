@@ -22,6 +22,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Logout</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/notifications">
+                        <span class="material-symbols-outlined">
+                            notifications
+                        </span>
+                        {{Session::get('notification_count')}}
+                    </a>
+                </li>
                 @else
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Login</a>

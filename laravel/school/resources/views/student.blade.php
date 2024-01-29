@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-lg-3 border border-dark">
                     <strong>Search</strong>
-                    <input type="text" name="search" value=""/>
+                    <input type="text" name="search" value="" />
                 </div>
                 <div class="col-lg-3 border border-dark">
                     <strong>Filter</strong>
@@ -33,7 +33,7 @@
                         <option value="other">Other</option>
                     </select>
                 </div>
-                <div class="col-lg-3 border border-dark" >
+                <div class="col-lg-3 border border-dark">
                     <input type="submit" class="btn btn-success" />
                 </div>
             </div>
@@ -44,8 +44,8 @@
     <table class="table">
         <tr>
             <th>First name</th>
-            <th>Last name</th>
-            <th>Year level</th>
+            <th>@sortablelink('last_name', 'Last name')</th>
+            <th>@sortablelink('year_level', 'Year level')</th>
             <th>Province</th>
             <th>More Info</th>
             <th>Edit Entry</th>
@@ -87,6 +87,7 @@
         </tr>
         @endforeach
     </table>
+    {{$students -> links('pagination::bootstrap-5')}}
     <h2>Male students:</h2>
     <table class="table">
         <tr>

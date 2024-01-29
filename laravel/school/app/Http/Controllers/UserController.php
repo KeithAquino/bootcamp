@@ -54,7 +54,7 @@ class UserController extends Controller
         return view('register');
     }
 
-    public function show_profile()
+    public function show_profile(Request $request)
     {
         $student = Student::query()
             ->select('*')
@@ -77,7 +77,7 @@ class UserController extends Controller
             ->get()
             ->last();
 
-        return view('profile', compact('student', 'classes', 'profile_picture'));
+        return view('profile', compact('student', 'classes', 'profile_picture', 'request'));
     }
 
     public function logout()
