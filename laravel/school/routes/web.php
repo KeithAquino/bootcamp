@@ -39,6 +39,7 @@ Route::middleware('checkSessionUser')->get('/orders', [OrderController::class, '
 Route::middleware('checkSessionUser')->get('/orders/{id}', [OrderController::class, 'view_order']);
 Route::middleware('checkSessionUser')->put('/orders/receive/{id}', [OrderController::class, 'receive_order']);
 Route::middleware('checkSessionUser')->put('/orders/cancel/{id}', [OrderController::class, 'cancel_order']);
+Route::middleware('checkSessionUser')->get('/notifications', [UserController::class, 'view_notifications']);
 
 //ADMIN SIDE
 Route::middleware('checkSessionAdmin')->get('/admin/students', [StudentController::class, 'index']);

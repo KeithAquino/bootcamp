@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Student;
 use App\Models\StudentsPhoto;
+use App\Models\Notification;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -15,6 +16,16 @@ use DB;
 
 class UserController extends Controller
 {
+    public function view_notifications()
+    {
+        $notifications = Notification::query()
+            ->select('*')
+            ->where('user_id', '=', Session::get('user_id'))
+            ->get();
+
+        return view('notification', compact('notifications'));
+    }
+
     public function upload_profile_picture(Request $r)
     {
         $sp = new StudentsPhoto;
