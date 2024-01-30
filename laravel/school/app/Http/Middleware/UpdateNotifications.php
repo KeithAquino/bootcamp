@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Session;
 
+use App\Models\Notification;
 use Illuminate\Support\Facades\DB;
 
-class CheckSessionUser
+class UpdateNotifications
 {
     /**
      * Handle an incoming request.
@@ -18,8 +19,15 @@ class CheckSessionUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Session::get('role') !== 'user') {
-            return redirect('/login')->with('fail', 'Unauthorized access! Please login as user.');
+        if (Session::get('user_id')) {
+            $notifications = Notification::query()
+                ->select(DB::raw('COUNT(*) AS total_notifs'))
+                ->where('user_id', '=', Session::get('user_id'))
+                ->where('marked_seen', '=', '0')
+                ->get()
+                ->first();
+
+            Session::put('notification_count', $notifications->total_notifs);
         }
 
         return $next($request);

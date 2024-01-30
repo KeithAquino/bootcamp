@@ -16,11 +16,50 @@ use DB;
 
 class UserController extends Controller
 {
+    public function delete_notification(string $id)
+    {
+        Notification::where('notif_id', '=', $id)
+            ->delete();
+
+        return redirect('/notifications')->with('success', 'Notification deleted.');
+    }
+
+    public function seen_notification()
+    {
+        Notification::where('user_id', '=', Session::get('user_id'))
+            ->update(
+                [
+                    'marked_seen' => '1'
+                ]
+            );
+
+        return redirect('/notifications');
+    }
+
+    public function view_notification(string $id)
+    {
+        $notification = Notification::query()
+            ->select('redirect')
+            ->where('notif_id', '=', $id)
+            ->get()
+            ->first();
+
+        Notification::where('notif_id', '=', $id)
+            ->update(
+                [
+                    'marked_seen' => '1'
+                ]
+            );
+
+        return redirect($notification->redirect);
+    }
+
     public function view_notifications()
     {
         $notifications = Notification::query()
             ->select('*')
             ->where('user_id', '=', Session::get('user_id'))
+            ->orderBy('date_sent', 'DESC')
             ->get();
 
         return view('notification', compact('notifications'));

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Order;
+use App\Models\Notification;
 use App\Models\OrdersProduct;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -55,12 +56,36 @@ class OrderController extends Controller
 
     public function update_order_status(Request $r, string $id)
     {
-        $order = Order::where('order_id', '=', $id)
+        Order::where('order_id', '=', $id)
             ->update(
                 [
                     'status' => $r->input("status")
                 ]
             );
+
+        $order = Order::query()
+            ->select('status', 'user_id')
+            ->where('order_id', '=', $id)
+            ->get()
+            ->first();
+
+        $notif = new Notification;
+
+        switch ($order->status) {
+            case "accepted":
+                $notif->content = "Your order has been accepted! Please wait for your order to be completed and delivered.";
+                break;
+            case "delivering":
+                $notif->content = "Your order is on the way! Please be ready with your payment.";
+                break;
+            case "delivered":
+                $notif->content = "Your order has been delivered, enjoy! Please mark the order as received.";
+                break;
+        }
+
+        $notif->redirect = "/orders/" . $id;
+        $notif->user_id = $order->user_id;
+        $notif->save();
 
         return redirect('/admin/orders/' . $id)->with('success', 'Updated order status to ' . $r->input("status"));
     }
