@@ -87,6 +87,20 @@ class UserController extends Controller
 
     public function register(Request $r)
     {
+        $this->validate($r, [
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'email' => 'required|unique:users,email',
+            'pw' => 'required|min:6',
+            'con_pw' => 'required|same:pw',
+            'student_id' => 'required|unique:users,student_id'
+
+        ], [], [
+            'pw' => 'password',
+            'con_pw' => 'password confirmation',
+            'student_id' => 'student ID'
+        ]);
+
         $user = new User;
         $user->first_name = $r->input('first_name');
         $user->last_name = $r->input('last_name');

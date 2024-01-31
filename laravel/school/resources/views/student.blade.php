@@ -50,6 +50,7 @@
             <th>More Info</th>
             <th>Edit Entry</th>
             <th>Delete Entry</th>
+            <th>Send Email</th>
         </tr>
         @foreach ($students as $s)
         <tr>
@@ -62,6 +63,7 @@
             <td>
                 <a data-bs-toggle="modal" data-bs-target="#delete_{{$s -> student_id}}" class="btn btn-danger">Delete</a>
             </td>
+            <td><a href="/admin/students/send/{{$s -> student_id}}" class="btn btn-success">Send Email</a></td>
 
             <div class="modal fade" id="delete_{{$s -> student_id}}" tabindex="-1">
                 <div class="modal-dialog">

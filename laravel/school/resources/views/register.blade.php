@@ -10,7 +10,7 @@
     @include('layouts/navbar')
     @include('layouts/messages')
     <h1>Register</h1>
-    <form action="/register" method="POST">
+    <form action="/admin/register" method="POST">
         @csrf
         <label>First name:</label>
         <input type="text" name="first_name" /><br />

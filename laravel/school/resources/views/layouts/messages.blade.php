@@ -1,5 +1,8 @@
 @if (Session::has('success'))
-<p id="notif" class="bg bg-success text-light">{{Session::get('success')}}</p>
+<p class="notif bg bg-success text-light">{{Session::get('success')}}</p>
 @elseif (Session::has('fail'))
-<p id="notif" class="bg bg-danger text-light">{{Session::get('fail')}}</p>
+<p class=" notif bg bg-danger text-light">{{Session::get('fail')}}</p>
 @endif
+@foreach ($errors -> all() as $error)
+<p class="  notif bg bg-danger text-light">{{$error}}</p>
+@endforeach

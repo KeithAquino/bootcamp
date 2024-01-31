@@ -7,11 +7,43 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Kyslik\ColumnSortable\Sortable;
+use Illuminate\Support\Facades\Mail;
 
 class StudentController extends Controller
 {
     use Sortable;
 
+    public function send_student_email(Request $r, string $id)
+    {
+        $student_email = Student::query()
+            ->select('email_address')
+            ->where('student_id', '=', $id)
+            ->get()
+            ->first();
+
+        $data = [
+            'body' => $r->input('email_body')
+        ];
+
+        Mail::send('emails.to_students', $data, function ($message) use ($student_email, $r) {
+            $message->from('president@cae.com', 'President of CAE');
+            $message->to($student_email->email_address);
+            $message->subject($r->input('email_subject'));
+        });
+
+        return redirect('/admin/students')->with('success', 'Email sent!');
+    }
+
+    public function send_student_email_form(string $id)
+    {
+        $student_email = Student::query()
+            ->select('first_name', 'last_name', 'email_address')
+            ->where('student_id', '=', $id)
+            ->get()
+            ->first();
+
+        return view('student_email', compact('student_email'));
+    }
 
     public function delete_student(string $id)
     {

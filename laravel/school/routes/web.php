@@ -20,14 +20,10 @@ Route::middleware(['updateNotifications'])->group(function () {
         return view('about');
     });
 
-    Route::get('/register', [UserController::class, 'show_register']);
-    Route::post('/register', [UserController::class, 'register']);
 
     Route::get('/login', [UserController::class, 'show_login']);
     Route::post('/login', [UserController::class, 'login']);
-
     Route::get('/logout', [UserController::class, 'logout']);
-
     Route::get('/cafeteria', [OrderController::class, 'index']);
 });
 
@@ -51,6 +47,8 @@ Route::middleware(['checkSessionUser', 'updateNotifications'])->group(function (
 
 //ADMIN SIDE
 Route::middleware(['checkSessionAdmin', 'updateNotifications'])->group(function () {
+    Route::get('/admin/register', [UserController::class, 'show_register']);
+    Route::post('/admin/register', [UserController::class, 'register']);
     Route::get('/admin/students', [StudentController::class, 'index']);
     Route::get('/admin/students/create', [StudentController::class, 'add_student_form']);
     Route::get('/admin/students/edit/{id}', [StudentController::class, 'edit_student_form']);
@@ -78,4 +76,7 @@ Route::middleware(['checkSessionAdmin', 'updateNotifications'])->group(function 
     Route::get('/admin/orders/{id}', [OrderController::class, 'show_order']);
     Route::put('/admin/orders/accept/{id}', [OrderController::class, 'accept_order']);
     Route::put('/admin/orders/status/{id}', [OrderController::class, 'update_order_status']);
+
+    Route::get('/admin/students/send/{id}', [StudentController::class, 'send_student_email_form']);
+    Route::post('/admin/students/send/{id}', [StudentController::class, 'send_student_email']);
 });
