@@ -37,7 +37,7 @@ class StudentController extends Controller
     public function send_student_email_form(string $id)
     {
         $student_email = Student::query()
-            ->select('first_name', 'last_name', 'email_address')
+            ->select('student_id', 'first_name', 'last_name', 'email_address')
             ->where('student_id', '=', $id)
             ->get()
             ->first();
